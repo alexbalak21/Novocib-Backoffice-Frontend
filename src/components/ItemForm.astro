@@ -1,0 +1,55 @@
+---
+import type { Item } from "../types/items";
+
+export interface Props {
+  item?: Item | null; // null = create mode
+  action: string;     // form POST target
+  submitLabel?: string;
+}
+
+const { item, action, submitLabel = "Save" } = Astro.props;
+---
+
+<form
+  method="POST"
+  action={action}
+  enctype="application/x-www-form-urlencoded"
+  class="space-y-4 max-w-lg"
+>
+  <!-- Title -->
+  <div class="flex flex-col">
+    <label for="name" class="font-semibold mb-1">Title</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      value={item?.name ?? ""}
+      class="border p-2 rounded"
+    />
+  </div>
+
+  <!-- Description -->
+  <div class="flex flex-col">
+    <label for="description" class="font-semibold mb-1">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      rows="3"
+      class="border p-2 rounded"
+    >{item?.description ?? ""}</textarea>
+  </div>
+
+  <!-- Hidden ID (edit mode only) -->
+  {item && (
+    <input type="hidden" name="id" value={item.id} />
+  )}
+
+  <!-- Submit -->
+  <button
+    type="submit"
+    class="px-4 py-2 bg-green-600 text-white rounded"
+  >
+    {submitLabel}
+  </button>
+</form>

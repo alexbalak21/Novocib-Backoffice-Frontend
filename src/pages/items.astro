@@ -3,11 +3,14 @@ import { client } from '../lib/graphqlClient';
 import { GET_ITEMS } from '../lib/queries/items';
 import type { ItemsQueryResult } from '../types/items';
 import ItemsTable from '../components/IItemsTable.astro';
+import ItemForm from '../components/ItemForm.astro';
 
 const { items } = await client.request<ItemsQueryResult>(GET_ITEMS);
 console.log("Items from GraphQL:", items);
 ---
 
 <h1 class="text-2xl font-bold mb-4">Items</h1>
+
+<ItemForm action="/items/create" submitLabel="Create" />
 
 <ItemsTable items={items} />

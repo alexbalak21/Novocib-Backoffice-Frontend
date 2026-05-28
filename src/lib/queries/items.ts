@@ -21,7 +21,7 @@ export const GET_ITEM = gql`
 `;
 
 export const CREATE_ITEM = gql`
-  mutation ($name: String!, $description: String!) {
+  mutation ($name: String!, $description: String) {
     createItem(name: $name, description: $description) {
       id
       name
@@ -31,7 +31,7 @@ export const CREATE_ITEM = gql`
 `;
 
 export const UPDATE_ITEM = gql`
-  mutation ($id: ID!, $name: String!, $description: String!) {
+  mutation ($id: ID!, $name: String!, $description: String) {
     updateItem(id: $id, name: $name, description: $description) {
       id
       name
