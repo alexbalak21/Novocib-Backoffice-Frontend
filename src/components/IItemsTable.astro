@@ -3,9 +3,10 @@ import type { Item } from "../types/items";
 
 export interface Props {
   items: Item[];
+  editingItemId?: string | number | null;
 }
 
-const { items } = Astro.props;
+const { items, editingItemId } = Astro.props;
 ---
 
 
@@ -27,7 +28,7 @@ const { items } = Astro.props;
         <td class="p-2">{item.description}</td>
         <td class="p-2 flex gap-2">
           <a
-            href={`/items/${item.id}/edit`}
+            href={`/items?edit=${item.id}`}
             class="px-2 py-1 bg-blue-600 text-white rounded text-sm"
           >
             Edit

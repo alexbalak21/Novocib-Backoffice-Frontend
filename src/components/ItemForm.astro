@@ -5,9 +5,10 @@ export interface Props {
   item?: Item | null; // null = create mode
   action: string;     // form POST target
   submitLabel?: string;
+  cancelHref?: string;
 }
 
-const { item, action, submitLabel = "Save" } = Astro.props;
+const { item, action, submitLabel = "Save", cancelHref } = Astro.props;
 ---
 
 <form
@@ -52,4 +53,10 @@ const { item, action, submitLabel = "Save" } = Astro.props;
   >
     {submitLabel}
   </button>
+
+  {cancelHref && (
+    <a href={cancelHref} class="ml-3 px-4 py-2 border rounded text-gray-700">
+      Cancel
+    </a>
+  )}
 </form>
